@@ -7,7 +7,14 @@
 
 import SwiftUI
 
-/// Custom Color Picker
+/// Custom Color Picker title, colors, selectedColor, highlightColor, colorShapesize, colorShape
+/// - Parameter title: Optional. The title for the color picker. Default is "Color Picker".
+/// - Parameter colors: Optional. An array of Colors to present to the user. Default Colors are red, blue, and green.
+/// - Parameter selectedColor: Required. A binding to a Color view.
+/// - Parameter highlightColor: Optional. The Color to make the selection indicator. Default is the primary app color.
+/// - Parameter colorShapeSize: Optional. A CGSize object describing the desired size of the color swatches. Default is 20 by 20.
+/// - Parameter colorShape: Optional. A closure which returns a Shape. Use this to use a different shape for the color swatches, e.g. a rectangle. The selection indicator will be a scaled up version of the shape you specify.
+/// - Returns View: The color picker view.
 struct CustomColorPicker<ColorShape: Shape>: View {
     var title: String
     var colorShapeSize: CGSize
