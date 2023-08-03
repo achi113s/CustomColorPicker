@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Custom Color Picker
 struct CustomColorPicker<ColorShape: Shape>: View {
     var title: String
     var colorShapeSize: CGSize
@@ -14,6 +15,7 @@ struct CustomColorPicker<ColorShape: Shape>: View {
     
     @State private var colors: [Color]
     @Binding private var selectedColor: Color
+    var highlightColor: Color
     
     var body: some View {
         HStack {
@@ -30,6 +32,7 @@ struct CustomColorPicker<ColorShape: Shape>: View {
                             colorShape
                                 .scale(1.3)
                                 .stroke(style: .init(lineWidth: 2))
+                                .fill(highlightColor)
                         }
                     }
                     .onTapGesture {
@@ -39,15 +42,17 @@ struct CustomColorPicker<ColorShape: Shape>: View {
         }
     }
     
-    init(title: String,
-         colors: [Color],
+    init(_ title: String = "Color Picker",
+         colors: [Color] = [Color.red, Color.blue, Color.green],
          selectedColor: Binding<Color>,
-         colorShapeSize: CGSize,
+         highlightColor: Color = Color.primary,
+         colorShapeSize: CGSize = CGSize(width: 20, height: 20),
          colorShape: @escaping () -> ColorShape = { Circle() }
     ) {
         self.title = title
         self._colors = State(initialValue: colors)
         self._selectedColor = selectedColor
+        self.highlightColor = highlightColor
         self.colorShape = colorShape()
         self.colorShapeSize = colorShapeSize
     }
@@ -55,12 +60,16 @@ struct CustomColorPicker<ColorShape: Shape>: View {
 
 struct CustomColorPicker_Previews: PreviewProvider {
     static let title = "🎨  Accent Color"
-    static let colors: [Color] = [.red, .blue, .green, Color("ShyMoment")]
+    static let colors: [Color] = [.red, .blue, .green]
     static let defaultSelectedColor: Color = .red
     
     static var previews: some View {
         StatefulPreviewWrapper(Color.red) {
-            CustomColorPicker(title: title, colors: colors, selectedColor: $0, colorShapeSize: CGSize(width: 20, height: 20))
+            CustomColorPicker(title,
+                              colors: colors,
+                              selectedColor: $0,
+                              colorShapeSize: CGSize(width: 20, height: 20)
+            )
         }
     }
 }
