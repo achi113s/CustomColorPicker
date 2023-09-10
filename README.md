@@ -22,21 +22,6 @@ CustomColorPicker("Will Change this Title", selectedColor: $selectedColor, color
                 .colorShapeSize(CGSize(width: 20, height: 20))
                 .colors([.yellow, .orange, .brown, .red])
                 .title("🎨 Pick a Color")
-                // This is where you could perform some change based on the selected color.
-                // For example, change the app's default accent color.
-                .onChange(of: selectedColor) { newColor in
-                    print(newColor.description)
-                }
-                .frame(width: 300, height: 40)
-                .padding(.horizontal)
-                .background(.white)
-                .cornerRadius(8)
-                .foregroundColor(.black)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(style: .init(lineWidth: 1))
-                        .fill(Color.init(white: 0.9))
-                )
 ```
 
 The selected color is determined by matching the color's hash value, so you can have multiple color pickers bound to a single state variable that all change their selected value at the same time, given that they have the same color(s) in them.
