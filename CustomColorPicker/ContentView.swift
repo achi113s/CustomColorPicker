@@ -25,9 +25,7 @@ struct ContentView: View {
             VStack(spacing: 15) {
                 Text("Default Example")
                     .font(.title3)
-                CustomColorPicker("Pick a Color",
-                                  selectedColor: $selectedColor
-                )
+                CustomColorPicker(selectedColor: $selectedColor)
             }
             
             Divider()
@@ -39,8 +37,7 @@ struct ContentView: View {
                     .multilineTextAlignment(.center)
                     .font(.callout)
                 
-                CustomColorPicker("🎨 Pick a Color",
-                                  colors: [.yellow, .orange, .brown, .red],
+                CustomColorPicker("Will Change this Title",
                                   selectedColor: $selectedColor,
                                   colorShape: {
                     // You can pass any Shape here.
@@ -48,9 +45,11 @@ struct ContentView: View {
                     // you get a Circle by default.
                     RoundedRectangle(cornerRadius: 2)
                 })
-                // There are two available view modifiers.
+                // There are a few available view modifiers.
                 .highlightColor(.blue)
-                .colorShapeSize(CGSize(width: 30, height: 15))
+                .colorShapeSize(CGSize(width: 20, height: 20))
+                .colors([.yellow, .orange, .brown, .red])
+                .title("🎨 Pick a Color")
                 // This is where you could perform some change based on the selected color.
                 // For example, change the app's default accent color.
                 .onChange(of: selectedColor) { newColor in
