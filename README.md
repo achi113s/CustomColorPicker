@@ -24,7 +24,7 @@ CustomColorPicker("Will Change this Title", selectedColor: $selectedColor, color
                 .title("🎨 Pick a Color")
 ```
 
-The selected color is determined by matching the color's hash value, so you can have multiple color pickers bound to a single state variable that all change their selected value at the same time, given that they have the same color(s) in them.
+The selected color is determined by matching the color's hash value. Unfortunately this means that the selected color does not persist between app launches, because hash values don't persist. To achieve this functionality you will need to modify the color picker to use a different identifier, e.g. a string Color name.
 
 ## Screenshot:
 
