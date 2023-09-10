@@ -42,14 +42,15 @@ struct ContentView: View {
                 CustomColorPicker("🎨 Pick a Color",
                                   colors: [.yellow, .orange, .brown, .red],
                                   selectedColor: $selectedColor,
-                                  highlightColor: Color.blue,
-                                  colorShapeSize: CGSize(width: 20, height: 20),
                                   colorShape: {
                     // You can pass any Shape here.
                     // If you don't specify a closure which returns a Shape,
                     // you get a Circle by default.
                     RoundedRectangle(cornerRadius: 2)
                 })
+                // There are two available view modifiers.
+                .highlightColor(.blue)
+                .colorShapeSize(CGSize(width: 30, height: 15))
                 // This is where you could perform some change based on the selected color.
                 // For example, change the app's default accent color.
                 .onChange(of: selectedColor) { newColor in

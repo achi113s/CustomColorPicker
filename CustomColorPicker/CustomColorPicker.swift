@@ -17,12 +17,12 @@ import SwiftUI
 /// - Returns View: The color picker view.
 struct CustomColorPicker<ColorShape: Shape>: View {
     var title: String
-    var colorShapeSize: CGSize
+    var colorShapeSize: CGSize = CGSize(width: 20, height: 20)
     var colorShape: ColorShape
+    var highlightColor: Color = Color.primary
     
     @State private var colors: [Color]
     @Binding private var selectedColor: Color
-    var highlightColor: Color
     
     var body: some View {
         HStack {
@@ -49,19 +49,27 @@ struct CustomColorPicker<ColorShape: Shape>: View {
         }
     }
     
-    init(_ title: String = "Color Picker",
+    public init(_ title: String = "Color Picker",
          colors: [Color] = [Color.red, Color.blue, Color.green],
          selectedColor: Binding<Color>,
-         highlightColor: Color = Color.primary,
-         colorShapeSize: CGSize = CGSize(width: 20, height: 20),
          colorShape: @escaping () -> ColorShape = { Circle() }
     ) {
         self.title = title
         self._colors = State(initialValue: colors)
         self._selectedColor = selectedColor
-        self.highlightColor = highlightColor
         self.colorShape = colorShape()
-        self.colorShapeSize = colorShapeSize
+    }
+    
+    public func colorShapeSize(_ size: CGSize) -> CustomColorPicker {
+        var view = self
+        view.colorShapeSize = size
+        return view
+    }
+    
+    public func highlightColor(_ color: Color) -> CustomColorPicker {
+        var view = self
+        view.highlightColor = color
+        return view
     }
 }
 
@@ -74,8 +82,7 @@ struct CustomColorPicker_Previews: PreviewProvider {
         StatefulPreviewWrapper(Color.red) {
             CustomColorPicker(title,
                               colors: colors,
-                              selectedColor: $0,
-                              colorShapeSize: CGSize(width: 20, height: 20)
+                              selectedColor: $0
             )
         }
     }
