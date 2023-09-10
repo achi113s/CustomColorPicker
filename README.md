@@ -1,6 +1,6 @@
 # 🎨 CustomColorPicker for *SwiftUI*
 
-This is a custom color picker I made for my other app, ConsciousCart. It takes, at minimum, a title, the colors from which to pick, and a state variable holding a Color. There are some additional options you can specify such as the highlight color, the size of the color swatches, and also pass in a custom Shape to use as the color swatch.
+This is a custom color picker I made for my other app, ConsciousCart. It takes, at minimum, a state variable holding a Color. There are some additional options you can specify using the included modifiers. These include the title, the highlight color, the size of the color swatches, and the colors. You can also pass in a custom Shape to use as the color swatch as a trailing closure to the initializer.
 
 ## How to Use:
 
